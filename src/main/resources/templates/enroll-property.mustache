@@ -1,0 +1,324 @@
+{{>layout/header}}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ol>
+                    <li><a href="index.html">홈</a></li>
+                    <li>매물등록</li>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="enroll-property">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hangul">매물등록</h2>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-darkblue">
+                        매물정보
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">상세주소</label>
+                            <div class="col-sm-10 form-inline">
+                                <select class="form-control" style="width:250px; margin-right:5px;" id="addressKindU" >
+                                  <option selected>전체</option>>
+                                  <option>동천파크자이</option>
+                                  <option>더샵 동천 이스트포레</option>
+                                  <option>수지 삼성4차</option>
+                                  <option>수지 래미안이스트파크</option>
+                                  <option>수지 파크푸르지오</option>
+                                </select>
+                                <input type="text" id='address' class="form-control" placeholder="동/호">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">거래유형</label>
+                            <div class="col-sm-10">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-outline-grey btn_type btn_sell" data-type="sell">
+                                        <input type="radio" name="trade" value="매매" autocomplete="off" checked> 매매
+                                    </label>
+                                    <label class="btn btn-outline-grey btn_type btn_full_rent second" data-type="full_rent">
+                                        <input type="radio" name="trade" value="전세" autocomplete="off"  > 전세
+                                    </label>
+                                    <label class="btn btn-outline-grey btn_type btn_month_rent" data-type="month_rent">
+                                        <input type="radio" name="trade" value="월세" autocomplete="off"  > 월세
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">금액</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group" >
+                                    <input type="text" id="price" class="form-control" placeholder="숫자만입력">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">만원</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form_price_manager row">
+                            <label  class="col-sm-2 col-form-label">관리비</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id='admin_expense' placeholder="숫자만입력">
+                                    <div class="input-group-append" style="margin-right:5px;">
+                                        <span class="input-group-text">만원</span>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" id="include" placeholder="포함내역" style="margin-right:5px;">
+                                <span class="btn btn-outline-grey" onclick="$('#include').val($('#include').val()+$(this).html()+',')" style="margin-right:5px;">전기</span>
+                                <span class="btn btn-outline-grey" onclick="$('#include').val($('#include').val()+$(this).html()+',')" style="margin-right:5px;">수도</span>
+                                <span class="btn btn-outline-grey" onclick="$('#include').val($('#include').val()+$(this).html()+',')" style="margin-right:5px;">가스</span>
+                                <span class="btn btn-outline-grey" onclick="$('#include').val($('#include').val()+$(this).html()+',')">인터넷</span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-darkblue">
+                        기본정보
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">층수</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group" style="margin-right:5px;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">현재층</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="floor_current" value="" placeholder="숫자만입력">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">층</span>
+                                    </div>
+                                </div>
+                                <div class="input-group" style="margin-right:5px">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">전체</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="floor_total" placeholder="숫자만입력">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">층</span>
+                                    </div>
+                                </div>
+                                <select class="form-control" id="floor_height">
+                                    <option value="0" >저/중/고 선택</option>
+                                    <option value="저층" >저층</option>
+                                    <option value="중층" >중층</option>
+                                    <option value="고층" >고층</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">방 수<span class="bath">/화장실 수</span></label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group" style="margin-right:5px">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">방 수</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="room" placeholder="숫자만입력">
+                                    <!-- <span class="input-group-addon">개</span> -->
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">화장실 수</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="bathroom" placeholder="숫자만입력">
+                                    <!-- <span class="input-group-addon">개</span> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">면적</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="row">
+                                    <div class="col-sm-6 form_area_real">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">실면적</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="actual_area" placeholder="숫자만입력">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">㎡</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="actual_area_py" placeholder="숫자만입력">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">평(PY)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form_area_law">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">공급면적</span>
+                                            </div>
+                                            <input type="text" class="form-control " id="supply_area" placeholder="숫자만입력">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">㎡</span>
+                                            </div>
+                                            <input type="text" class="form-control " id="supply_area_py" placeholder="숫자만입력">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">평(PY)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">주차</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group" style="margin-right:5px">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">세대당</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="park" placeholder="가능한 주차대수">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">대</span>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">전체주차수</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="park_all" placeholder="가능한 주차대수">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">대</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">방향</label>
+                            <div class="col-sm-10 form-inline space">
+                                <input type="text" class="form-control" id="direction" placeholder="방향">
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">동향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">서향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">남향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">북향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">북동향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">남동향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">남서향</span>
+                                <span class="btn btn-outline-grey " onclick="$('#direction').val($(this).html())">북서향</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-darkblue">
+                        추가정보
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">엘리베이터</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="elevator" placeholder="숫자만입력">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">대</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">입주가능일</label>
+                            <div class="col-sm-10 form-inline space">
+                                <input type="text" class="form-control" id="enter_date" placeholder="입주가능일">
+                                <span class="btn btn-outline-grey " onclick="$('#enter_date').val($(this).html())">즉시</span>
+                                <span class="btn btn-outline-grey " onclick="$('#enter_date').val($(this).html())">가까운 시일내 협의</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">난방</label>
+                            <div class="col-sm-10 form-inline space">
+                                <input type="text" class="form-control" id="heat" value="" placeholder="난방">
+                                <span class="btn btn-outline-grey " onclick="$('#heat').val($(this).html())">지역</span>
+                                <span class="btn btn-outline-grey " onclick="$('#heat').val($(this).html())">개별</span>
+                                <span class="btn btn-outline-grey " onclick="$('#heat').val($(this).html())">중앙</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">세대수</label>
+                            <div class="col-sm-10 form-inline">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="household" placeholder="세대수">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">세대</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-darkblue">
+                        상세설명
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">제목</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="title" class="form-control" placeholder="제목" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">상세설명</label>
+                            <div class="col-sm-10">
+                                <textarea id="summernote"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label  class="col-sm-2 col-form-label">매물사진</label>
+                            <div class="col-sm-10">
+                                <input type="file" id="p_img" multiple="multiple" style="display:none">
+
+                                <div id="property_img" style="width:800px">
+                                    <div id="grid_img" onclick="upd_link()">
+                                        <div style=" width:140px; height:100px; position:relative" >
+                                            <img src="/img/img_upload.png" class="img_src" style="display:block">
+                                            <img src="/img/x_button.png" class="x_button" onclick="delete_img(this)" width="40" height="40" style="display:none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center">
+                <button type="submit" id='btn-property-save' style="background: #428bca;color: #fff;">저장</button>
+                <button type="submit" onclick="location.href='/'" style="">목록</button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main><!-- End #main -->
+
+{{>layout/footer}}

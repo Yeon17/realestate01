@@ -1,0 +1,47 @@
+<!--Bootstrap-->
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<style type = "text/css">
+
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.nanumgothic *{
+ font-family: 'Nanum Gothic', sans-serif;
+
+}
+
+h1 > a > span{
+    font-family: 'NEXON Lv1 Gothic OTF';
+    font-size: 25px
+
+}
+
+.hangul{
+    font-family: 'NEXON Lv1 Gothic OTF';
+}
+
+
+
+
+</style>

@@ -1,0 +1,107 @@
+{{>layout/header}}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li><a href="index.html">홈</a></li>
+            <li>관리자 페이지</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="section-title">
+          <h2>의뢰확인</h2>
+        </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <ul id="portfolio-flters" >
+                      <li onclick="location.href='/administer'" class="btn-re">전체</li>
+                      <li onclick="location.href='/administer/buy'" class="btn-re">매수</li>
+                      <li onclick="location.href='/administer/sell'" class="btn-re">매도</li>
+                    </ul>
+                  </div>
+                </div>
+                <table class="table table-hover request-table hangul" style="table-layout: fixed">
+                  <thead>
+                  <tr>
+                    <th width="1%"></th>
+                    <th width="8%">번호</th>
+                    <th width="8%">구분</th>
+                    <th width="10%">아파트</th>
+                    <th width="8%">타입</th>
+                    <th width="10%">거래종류</th>
+                    <th width="10%">가격범위</th>
+                    <th width="15%">구매예정 시기</th>
+                    <th width="15%">방문날짜/시간</th>
+                    <th width="13%">이름</th>
+                    <th width="13%">휴대폰 번호</th>
+                    <th width="13%">상세내용</th>
+                    <th width="10%">제출일</th>
+                    <th width="10%">비고</th>
+                  </tr>
+                  </thead>
+                  <tbody id="tbody">
+                  {{#request}}
+                    <tr>
+                      <td class="post_new"></td>
+                      <td>{{id}}</td>
+                      <td>{{trade}}</td>
+                      <td>{{addressKindU}}</td>
+                      <td>{{addressKindD}}</td>
+                      <td>{{transaction}}</td>
+                      <td>{{price}}</td>
+                      <td>{{date}}</td>
+                      <td>{{visit}}</td>
+                      <td>{{name}}</td>
+                      <td>{{phone}}</td>
+                      <td><button id="content_detail" class="btn btn-outline-dark btn-sm" a href="#modal_view" data-content='{{message}}' data-toggle="modal">내용보기</button></td>
+                      <td class="modi_date">{{modifiedDate}}</td>
+                      <td><button name="btn-request-delete" data-rid={{id}} class="btn btn-outline-dark btn-sm">삭제</button></td>
+                    </tr>
+                  {{/request}}
+                  </tbody>
+                </table>
+                <ul style="display:flex; justify-content:center;" class="pagination">
+                    {{#check_pre}}
+                        <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+                    {{/check_pre}}
+                    {{#view_numbers}}
+                        <li class="page-item"><a class="page-link" href="?page={{.}}">{{.}}</a></li>
+                    {{/view_numbers}}
+                    {{#check_next}}
+                        <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+                    {{/check_next}}
+                </ul>
+      </div>
+
+                        <div id="modal_view" class="modal fade">
+                           <div class="modal-dialog" style="max-width:520px;">
+                              <div class="modal-content">
+                                <div class="modal-header hangul text-center">
+                                  <h4 class="modal-title w-100">상세내용</h4>
+                                </div>
+                                <div class="modal-body" style="margin-top:25px;line-height:1.8;">
+                                    <div id="content_view"></div>
+                                </div>
+                                <div class="btn btn-block" onclick="$('#modal_view').modal('hide');" style="background-color:#f9f9f9;"><strong>확인</strong></div>
+                              </div>
+                           </div>
+                        </div>
+
+
+    </section>
+
+  </main><!-- End #main -->
+
+  {{>layout/footer}}
