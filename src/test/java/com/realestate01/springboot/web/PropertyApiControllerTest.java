@@ -3,6 +3,7 @@ package com.realestate01.springboot.web;
 import com.realestate01.springboot.domain.property.Property;
 import com.realestate01.springboot.domain.property.PropertyRepository;
 import com.realestate01.springboot.web.dto.PropertySaveRequestDto;
+import com.realestate01.springboot.web.dto.PropertyUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,7 +59,7 @@ public class PropertyApiControllerTest {
                 .heat("heat")
                 .household("13")
                 .title("title")
-                .content("content")
+                .content("봉천동에 위치한 인테리어가 예쁜 2룸 입니다. 내부 구조가 좋아 방도 넓게 사용하실 수 있습니다.")
                 .image("image")
                 .represent_img("represent_img")
                 .build();
@@ -74,7 +75,36 @@ public class PropertyApiControllerTest {
         Property p = all.get(0);
         assertThat(p.getApart()).isEqualTo("dong");
         assertThat(p.getTitle()).isEqualTo("title");
-        assertThat(p.getContent()).isEqualTo("content");
+        assertThat(p.getContent()).isEqualTo("봉천동에 위치한 인테리어가 예쁜 2룸 입니다. 내부 구조가 좋아 방도 넓게 사용하실 수 있습니다.");
         assertThat(p.getRepresent_img()).isEqualTo("represent_img");
     }
+
+    @Test
+    public void Property_수정된다() throws Exception {
+        //given
+        Property savedProperty = propertyRepository.save(Property.builder()
+                .title("title")
+                .image("image")
+                .enter_date("enter_date")
+                .build());
+
+        Long updateId = savedProperty.getId();
+        String expectedTitle = "title2";
+        String expectedImage = "image2";
+
+        PropertyUpdateRequestDto requestDto = PropertyUpdateRequestDto.builder()
+                .title(expectedTitle)
+                .image(expectedImage)
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/property/" + updateId;
+        HttpEntity<PropertyUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+
+        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+        List<Property> all = propertyRepository.findAll();
+        assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
+        assertThat(all.get(0).getImage()).isEqualTo(expectedImage);
+
+    }
+
 }

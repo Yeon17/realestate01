@@ -66,7 +66,12 @@ $(document).ready(function() {
     callbacks: {	//여기 부분이 이미지를 첨부하는 부분
     					onImageUpload : function(files) {
     						uploadSummernoteImageFile(files[0],this);
-    					}
+    					},
+    					onPaste: function (e) {
+                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                                    e.preventDefault();
+                                    document.execCommand('insertText', false, bufferText);
+                                }
     			}
 
   });
@@ -181,3 +186,83 @@ function delete_img(del_btn){
     check_represent();
 }
 
+var scrap = 'off';
+function scrap_property(aa){
+    if(scrap == 'off'){
+        $(aa).css('color','blue');
+        scrap = 'on';
+    }
+    else {
+        $(aa).css('color','');
+        scrap = 'off';
+    }
+}
+
+var contents = $('.string_html').data('contents');
+$(".string_html").html(contents);
+
+$(".carousel-inner").children().first().attr('class','carousel-item active');
+
+
+var b2 = document.getElementsByClassName("apt-main");
+if (location.pathname == '/lookup-property') {
+  b2[0].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/park-xi') {
+  b2[1].classList.add('clicked');
+}
+
+var b3 = document.getElementsByClassName("apt-etc");
+if (location.pathname == '/lookup-property/eastpole') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[0].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/samsung4') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[1].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/eastpark') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[2].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/puleujio') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[3].classList.add('clicked');
+}
+
+if (location.pathname.includes('/property/update/')) {
+    var trade = $('input[name="trade"]');
+    var trade_prev = $('#prev').data("trade_prev");
+    if(trade_prev == '매매') $(trade[0]).attr('checked','checked');
+    else if(trade_prev == '전세') $(trade[1]).attr('checked','checked');
+    else if(trade_prev == '월세') $(trade[2]).attr('checked','checked');
+
+    var apart_prev = $('#addressKindU').data("apart_prev");
+    $("#addressKindU").val(apart_prev);
+
+    var height_prev = $('#floor_height').data("height_prev");
+    $("#floor_height").val(height_prev);
+}
+
+
+function modi_ans(){
+     $('#view_ans').css('display','none');
+     $('.answer').append(
+        "<div id='answer_text' style='border:1px solid #a9a9a9; background-color:white'>"+
+            "<textarea id='ans_content' style='width:100%; height:150px; border:none; padding:20px'></textarea>"+
+            "<div style='border-top:1px solid #e4e4e4; height:40px;text-align:right;'>"+
+                "<div id='btn-cancel' onclick='change_view()' style='padding:9px 25px 9px 25px;display:inline-block'>취소</div>"+
+                "<div id='btn-answer-update' onclick='click_update()' style='padding:9px 25px 9px 25px; display:inline-block'>등록</div>"+
+            "</div>"+
+        "</div>"
+     );
+     $('#ans_content').html($('#view_ans_text').html());
+}
+function change_view(){
+     $('#answer_text').remove();
+     $('#view_ans').css('display','');
+}

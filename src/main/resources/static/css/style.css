@@ -525,7 +525,7 @@ section {
   display: block;
   width: 50px;
   height: 3px;
-  background: #428bca;
+  background: #adbac6;
   bottom: 0;
   left: calc(50% - 25px);
 }
@@ -565,6 +565,27 @@ section {
 
 .note-editor{
     font-family : 맑은 고딕
+ }
+
+ .shadow-box-form {
+   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+   padding:30px;
+ }
+
+ .btn-white{
+
+   border: 0;
+   padding: 10px 24px;
+
+   transition: 0.4s;
+
+ }
+
+ .submit {
+   border: 0;
+   padding: 10px 24px;
+   border: 1px solid #D3D3D3;
+   transition: 0.4s;
  }
 /*--------------------------------------------------------------
 # Breadcrumbs
@@ -851,19 +872,16 @@ section {
     color:#404040;
     font-size:14px;
 
-    width:900px;
+    width:100%;
     margin:auto;
 
 
 }
 
-.notice table th{
+.notice table th, .notice table td{
     text-align:center;
-}
-
-.notice table th, td{
-    border-top: 1px solid #C1C1C1;
-    border-bottom: 1px solid #C1C1C1;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
 
     border-collapse: collapse;
     padding-right: 30px;
@@ -1340,7 +1358,7 @@ section {
     color: white;
     max-width: 100%;
     height: 155px;
-    font-size: 30px;
+    font-size: 27px;
     padding: 20px;
     font-weight: bolder;
     word-break:break-all;
@@ -1350,7 +1368,6 @@ section {
 
 
 .property-lookup .section-title h2{
-   font-size: 25px;
    padding-top: 20px;
 
 }
@@ -1527,6 +1544,239 @@ section {
     margin-left:5px;
 }
 
+
+/*--------------------------------------------------------------
+# property-detail
+--------------------------------------------------------------*/
+
+.property-detail .main_info_area{
+
+    padding: 20px;
+
+}
+
+.property-detail .tab_area{
+    padding: 10px 20px 10px 20px;
+
+    margin: 10px 0 10px 0;
+
+    background-color : #f5f9fc;
+
+    width : 100%;
+
+}
+
+.info_table_item th,td{
+
+    padding: 20px;
+
+    border-top: 1px solid #E2E2E2;
+    border-bottom: 1px solid #E2E2E2;
+
+    border-collapse: collapse;
+}
+
+.info_table_item th{
+    background-color: #f5f9fc;
+    width:160px;
+
+}
+
+.info_table_item td{
+    word-break:break-all;
+    width: 228px;
+}
+
+/*--------------------------------------------------------------
+# Post
+--------------------------------------------------------------*/
+
+.enroll-post .note-editor{
+    width:100%;
+}
+
+.post-detail .container{
+    border-top:1px solid #bdbebd;
+    text-align:center;
+}
+
+.post-detail .post_text_box{
+    border-bottom: 1px solid grey;
+}
+
+.posts-title{
+    padding-top:40px;
+    padding-bottom:20px;
+}
+
+.posts-title h3{
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.posts-title h3::after {
+  content: '';
+  position: absolute;
+  width: 35px;
+  height: 1.3px;
+  background: grey;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+
+
+
+.enroll_info {
+    overflow: hidden;
+    height: 40px;
+    border-bottom: 1px solid #e4e4e4;
+    text-align: center;
+}
+
+
+
+.enroll_info dl {
+    display: inline-block;
+    font-size: 0.938em;
+    line-height: 1.3333em;
+    color:grey;
+}
+
+.enroll_info dt{
+    float: left;
+    position: relative;
+    margin:0;
+    text-align:center;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.enroll_info dt:after {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 1px;
+    height: 10px;
+    background: grey;
+    content: "";
+
+}
+.enroll_info dd{
+    float: left;
+    position: relative;
+    line-height: 1.3333em;
+    padding-right: 10px;
+    margin:0;
+    color:#555;
+
+}
+
+.post_text_box > .string_html{
+    padding:30px 70px 30px 70px;
+
+}
+
+.answer_wrap {
+    margin-top: 20px;
+    border-top: 1px solid #e4e4e4;
+}
+
+.answer_info {
+    padding: 17px 40px;
+}
+
+
+.answer_info > strong {
+    position: relative;
+    padding-left: 65px;
+    font-weight: 300;
+    font-size: 1em;
+    line-height: 1em;
+    color: #222325;
+    letter-spacing: -0.03125em;
+}
+
+.answer_info > strong {
+    float: left;
+}
+
+.answer_info > strong span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2px 0 6px 0;
+    line-height: 1em;
+}
+
+.answer_info > strong em {
+    display: block;
+    padding: 2px 0 4px;
+    font-weight: 600;
+    font-size: 0.938em;
+    line-height: 1.2em;
+    font-family: "Open Sans";
+    color: #e83e0a;
+    letter-spacing: -0.03333em;
+    vertical-align: top;
+}
+
+.answer_info:after {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.answer {
+    position: relative;
+    padding: 35px 40px;
+    background: #fafafa;
+}
+
+.answer > .info {
+    position: absolute;
+    top: -41px;
+    right: 40px;
+    padding: 2px 0;
+    margin: 0 -10px;
+    font-size: 0.938em;
+    line-height: 1.3333em;
+}
+
+.answer > .info dt {
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.answer > .info dt, .answer > .info dd {
+    float: left;
+    position: relative;
+    line-height: 1.3333em;
+}
+
+.answer > .info dt:after {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 1px;
+    height: 10px;
+    background: grey;
+    content: "";
+}
+
+.answer > .info dd {
+    padding-right: 10px;
+    font-weight: 600;
+    color: #767676;
+}
+
+.answer > .info .el-dt:after{
+    width: 0px;
+}
 
 /*------------qqq*/
 

@@ -70,7 +70,7 @@ public class PropertyRepositoryTest {
 
         String title = "asdf";
 
-        String content = "wer";
+        String content = "fadfadf";
 
         String image = "QWERQWERE";
 
