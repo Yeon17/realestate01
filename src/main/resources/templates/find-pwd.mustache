@@ -1,0 +1,50 @@
+{{>layout/header}}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li><a href="/">홈</a></li>
+            <li><a href="/loginPage">로그인</a></li>
+            <li>비밀번호 찾기</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page">
+      <div class="container" >
+        <div class="section-title">
+          <h2 class="hangul">비밀번호 찾기</h2>
+        </div>
+
+          <div class="container col-md-5">
+            <div style="border-bottom:1px solid #d3d3d3;text-align:center;color:#808080;padding:20px;">입력한 정보로 임시 비밀번호가 전송됩니다</div>
+            <div class="px-4 py-3">
+              <div class="form-group">
+                <label >Email</label>
+                <input type="text" class="form-control" id="find_pwd_email" placeholder="가입시 등록한 이메일을 입력하세요.">
+              </div>
+              <div class="form-group">
+                <label >Name</label>
+                <input type="text" class="form-control" id="find_pwd_name" placeholder="가입시 등록한 이름을 입력하세요.">
+              </div>
+              <button id="btn-find-password" style="width:100%;" class="btn btn-primary">OK</button>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div id="" style="text-align:center;margin-top:20px">
+              취소
+            </div>
+
+          </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{{>layout/footer}}

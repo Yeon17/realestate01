@@ -1,0 +1,52 @@
+{{>layout/header}}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li><a href="/">홈</a></li>
+            <li><a href="/notice">공지사항</a></li>
+            <li>상세보기</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="post-detail">
+      <div class="container">
+        <div class="posts-title">
+          <h3><strong class="hangul" >{{notice.title}}</strong></h3>
+          <div class="enroll_info">
+            <dl>
+              <dt style="position:static"> <i class="fa fa-user-circle" aria-hidden="true"></i> </dt>
+              <dd> {{notice.author}} </dd>
+              <dt> <i class="fa fa-clock-o" aria-hidden="true"></i> </dt>
+              <dd class="date"> {{notice.modifiedDate}} </dd>
+            </dl>
+          </div>
+        </div>
+          <div class="post_text_box">
+            <div class="string_html" data-contents="{{notice.content}}">
+            </div>
+          </div>
+          <input id='id' type="text" value="{{notice.id}}" style="display:none">
+          <div class="text-center" style="margin-top:50px;">
+          {{#user}}
+            <button onclick="location.href='/administer/notice-update/{{notice.id}}'" class="submit" style="margin-right:5px;background: #428bca;color: #fff;">수정</button>
+          {{/user}}
+          {{#UserOrAdmin}}
+            <button id="btn-notice-delete" class="submit" style="margin-right:5px">삭제</button>
+          {{/UserOrAdmin}}
+            <button onclick="javascript:history.back()" class="submit">목록</button>
+          </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{{>layout/footer}}

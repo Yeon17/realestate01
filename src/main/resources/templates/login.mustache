@@ -1,0 +1,62 @@
+{{>layout/header}}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li><a href="/">홈</a></li>
+            <li>로그인</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="inner-page">
+      <div class="container" >
+        <div class="section-title">
+          <h2 class="hangul">로그인</h2>
+        </div>
+        <div class="container col-md-4">
+            <form class="px-4 py-3" method="post">
+              <div class="form-group">
+                <label >Email</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label >Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              </div>
+              <button type="submit" style="width:100%;" class="btn btn-primary">로그인</button>
+            </form>
+            {{#loginFailMsg}}
+                <p style="margin:20px;color:red;font-size:13px">
+                    {{loginFailMsg}}
+                </p>
+            {{/loginFailMsg}}
+            <div class="dropdown-divider"></div>
+
+        </div>
+        <div style="text-align:center">
+            <a href="/oauth2/authorization/google" style="margin: 0 auto;">
+                <img src="/img/구글로그인2.png" width="270px" height="50px">
+            </a>
+            <div style="margin:10px"></div>
+            <a href="/oauth2/authorization/naver" style="margin: 0 auto;">
+                <img src="/img/네이버로그인.PNG" width="270px" height="50px">
+            </a>
+            <div style="margin:20px; font-size:13px">
+                <a class="dropdown-item" href="/find-password">비밀번호를 잊으셨나요?</a>
+                <a class="dropdown-item" href="/sign-up">회원가입</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{{>layout/footer}}

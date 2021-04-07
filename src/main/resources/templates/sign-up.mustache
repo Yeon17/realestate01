@@ -1,0 +1,62 @@
+{{>layout/header}}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li><a href="/">홈</a></li>
+            <li><a href="/loginPage">로그인</a></li>
+            <li>회원가입</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+        <section class="inner-page">
+          <div class="container">
+            <div class="section-title">
+              <h2 class="hangul">회원가입</h2>
+            </div>
+            <table class="table table-bordered hangul" style="width:70%; margin:0 auto;color:#666666">
+
+              <colgroup>
+                <col width="400px"  bgcolor="#f5f9fc" class="align-middle"/>
+                <col width="1200px"/>
+              </colgroup>
+              <tr>
+                <th class="align-middle">이메일</th>
+                <td ><input type="text" class="form-control" id="user_email" onchange="init_check()" style="display:inline;width:70%">
+                  <button onclick="double_check()" style="border: 1px solid #D3D3D3;border: 0;width:17%;height:38px" >중복확인</button>
+                </td>
+              </tr>
+              <tr>
+                <th class="align-middle">비밀번호</th>
+                <td ><input type="password" style="width:60%" class="form-control" id="user_password"></td>
+              </tr>
+              <tr>
+                <th class="align-middle">비밀번호 확인</th>
+                <td><input type="password" style="width:60%;display:inline" class="form-control" id="user_password_sec" onchange="comp_pwd()" >
+                    <span id="check_pwd" style="color:red;font-size:13px"></span>
+                </td>
+              </tr>
+              <tr>
+                <th class="align-middle">이름</th>
+                <td ><input type="text" style="width:30%" class="form-control" id="user_name"></td>
+              </tr>
+
+            </table>
+
+            <div style="text-align:center; margin-left:650px">
+            <button id="btn-user-save" class="submit" style="margin:20px;background-color:#428bca;color:white;">회원가입</button>
+            </div>
+          </div>
+        </section>
+
+  </main><!-- End #main -->
+
+{{>layout/footer}}

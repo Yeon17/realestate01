@@ -1,0 +1,62 @@
+{{>layout/header}}
+
+ <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <ol>
+            <li><a href="/">홈</a></li>
+            <li>찜매물</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
+    <section class="cart">
+      <div class="container" style="width:800px">
+        <div class="section-title">
+          <h2>찜매물</h2>
+        </div>
+        {{#uid}}
+        <table class="table table-hover hangul" rules="groups" style="text-align:center;font-size:13px">
+          <thead bgcolor="#9ac3e1" >
+          <tr style="height:30px">
+            <th>사진</th>
+            <th>제목</th>
+            <th>금액</th>
+            <th>삭제</th>
+          </tr>
+          </thead>
+
+          <tbody id="tbody">
+
+          {{#cartList}}
+            <input type='text' id='id' value="{{id}}" style="display:none">
+              <tr class="cart_tr">
+                {{#represent_img}}
+                    <td><img src="{{represent_img}}" width="120px" height="80px"></td>
+                {{/represent_img}}
+                {{^represent_img}}
+                    <td><img src="/img/no_img.gif" width="120px" height="80px"></td>
+                {{/represent_img}}
+                <td><a href="/property-detail/{{id}}">{{title}}</a></td>
+                <td>{{price}}만원</td>
+                <td><button id="btn-cart-delete" class="btn btn-outline-dark btn-sm">삭제</button></td>
+              </tr>
+          {{/cartList}}
+          </tbody>
+        </table>
+        {{/uid}}
+        {{^uid}}
+            <p style="text-align:center">로그인을 해주세요</p>
+        {{/uid}}
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+{{>layout/footer}}
