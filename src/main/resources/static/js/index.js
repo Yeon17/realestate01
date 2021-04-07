@@ -1,119 +1,59 @@
-var main = {
-    init : function () {
-        var _this = this;
-        $('#btn-request-save').on('click', function () {
-            if(_this.request_check()) _this.request_save();
-        });
+$(document).ready(function() {
+  $('#summernote').summernote({
 
-        $('button[name=btn-request-delete]').on('click', function () {
-            var rid = $(this).data('rid');
-            if(_this.delete_check()) _this.request_delete(rid);
-        });
-    },
-    request_save : function () {
-        var data = {
-            trade: $('#trade').val(),
-            addressKindU: $('#addressKindU').val(),
-            addressKindD: $('#addressKindD').val(),
-            transaction: $('#transaction').val(),
-            price: $('#price').val(),
-            date: $('#date').val(),
-            visit: $('#visit').val(),
-            name: $('#name').val(),
-            phone: $('#phone').val(),
-            message: $('#summernote').val()
-        };
+    height: 300,
+    minHeight: null,
+    maxHeight: null,
+    lang : 'ko-KR',
+    dialogsInBody: true,
+    toolbar: [
+    			    // [groupName, [list of button]]
+    			    ['fontname', ['fontname']],
+    			    ['fontsize', ['fontsize']],
+    			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+    			    ['color', ['forecolor','color']],
+    			    ['table', ['table']],
+    			    ['para', ['ul', 'ol', 'paragraph']],
+    			    ['height', ['height']],
+    			    ['insert',['picture','link','video']],
+    			    ['view', ['help']]
+    			  ],
+    			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+    			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+    callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+    					onImageUpload : function(files) {
+    						uploadSummernoteImageFile(files[0],this);
+    					},
+    					onPaste: function (e) {
+                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                                    e.preventDefault();
+                                    document.execCommand('insertText', false, bufferText);
+                                }
+    			}
 
-        $.ajax({
-            type: 'POST',
-            url: '/api/v1/request',
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function() {
-            alert('의뢰가 등록되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    },
-    request_check : function () {
-        var f = document.request;
+  });
 
-        if (f.addressKindU.value == "전체") {
-            alert("아파트를 선택해주세요");
-            f.addressKindU.focus();
-            return false;
-        }
+});
 
-        if (f.addressKindD.value == "전체") {
-            alert("타입을 선택해주세요");
-            f.addressKindD.focus();
-            return false;
-        }
+function uploadSummernoteImageFile(file, editor) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "/uploadSummernoteImageFile",
+			contentType : false,
+			processData : false,
+			success : function(data) {
+            	//항상 업로드된 파일의 url이 있어야 한다.
+				$(editor).summernote('insertImage', data.url);
+			},
+			 error:function(request,status,error){
+                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+             }
+		});
+	}
 
-        if (f.transaction.value == "전체") {
-            alert("거래종류를 선택해주세요");
-            f.transaction.focus();
-            return false;
-        }
-
-        if (f.price.value == "") {
-            alert("가격범위를 입력해주세요");
-            f.price.focus();
-            return false;
-        }
-
-        if (f.date.value == "") {
-            alert("구매예정 날짜를 입력해주세요");
-            f.date.focus();
-            return false;
-        }
-
-        if (f.visit.value == "") {
-            alert("방문 날짜를 입력해주세요");
-            f.visit.focus();
-            return false;
-        }
-
-        if (f.name.value == "") {
-            alert("이름을 입력해주세요");
-            f.name.focus();
-            return false;
-        }
-
-        if (f.phone.value == "") {
-            alert("휴대폰 번호를 입력해주세요");
-            f.phone.focus();
-            return false;
-        }
-
-        if($(":radio[name='consent']:checked").val() != "agree"){
-            alert('개인정보 수집에 동의해주세요');
-            f.consent.focus();
-            return false;
-        }
-        return true;
-    },
-    delete_check : function() {
-        if (confirm("정말 삭제하시겠습니까?") == true) return true;
-        else return false;
-    },
-    request_delete : function (id) {
-
-        $.ajax({
-            type: 'DELETE',
-            url: '/api/v1/request/'+id,
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8'
-        }).done(function() {
-            alert('글이 삭제되었습니다.');
-            window.location.href = '/administer';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    }
-
-};
-
-main.init();
+//웹페이지에 summernote 내용 표시
+var contents = $('.string_html').data('contents');
+$(".string_html").html(contents);

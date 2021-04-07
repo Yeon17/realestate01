@@ -2,3 +2,9 @@
 
 .gradle
 .idea
+
+application-oauth.properties
+application.properties
+
+build
+out

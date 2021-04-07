@@ -9,12 +9,16 @@
 
           <!-- Slide 1 -->
           <div class="carousel-item active" style="background-image: url('img/slide/동천파크자이.jpg');">
-
+            {{#admin}}
+                <div><a class="admin-first" href="/administer/confirm-request">>>의뢰조회</a></div>
+                <div><a class="admin-second" href="/administer/enroll-property">>>매물등록</a></div>
+                <div><a class="admin-third" href="/administer/member-management">>>회원관리</a></div>
+            {{/admin}}
             <div class="carousel-container">
               <div class="carousel-content container">
                 <h2 class="animate__animated animate__fadeInDown">단지내 동천파크자이 공인중개사 사무소</h2>
                 <p class="animate__animated animate__fadeInUp">홍보문구가 들어갈 자리</p>
-                <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">매도하기/매수하기</a>
+                <a href="/request/buy" class="btn-get-started animate__animated animate__fadeInUp scrollto">매도하기/매수하기</a>
               </div>
             </div>
           </div>
@@ -32,8 +36,8 @@
 
     <!-- End Select -->
 
-    <!-- ======= About Lists Section ======= -->
-    <section class="about-lists">
+    <!-- ======= Property Lists Section ======= -->
+    <section class="property-lists">
       <div class="container">
         <div class="section-title hangul" >
           <h2>실시간 매물보기</h2>
@@ -41,49 +45,28 @@
 
         <div class="row no-gutters">
 
-          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up">
-            <img src="img/매물1.jpg" class="img-size">
-            <h4>Lorem Ipsum</h4>
-            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+          {{#property}}
+          <div class="col-lg-4 col-md-6 content-item" style="text-align:center;" data-aos="fade-up">
+          <a href="/property-detail/{{id}}">
+            {{#represent_img}}
+                <img src={{represent_img}} class="img-size">
+            {{/represent_img}}
+            {{^represent_img}}
+                <div class="default-img">{{apart}} {{address}}<br />{{price}}</div>
+            {{/represent_img}}
+            <h5 style="max-width:450px;margin-top:5px;">{{title}}</h5>
+          </a>
           </div>
-
-          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="100">
-            <span>02</span>
-            <h4>Repellat Nihil</h4>
-            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="200">
-            <span>03</span>
-            <h4> Ad ad velit qui</h4>
-            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="300">
-            <span>04</span>
-            <h4>Repellendus molestiae</h4>
-            <p>Inventore quo sint a sint rerum. Distinctio blanditiis deserunt quod soluta quod nam mider lando casa</p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="400">
-            <span>05</span>
-            <h4>Sapiente Magnam</h4>
-            <p>Vitae dolorem in deleniti ipsum omnis tempore voluptatem. Qui possimus est repellendus est quibusdam</p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="500">
-            <span>06</span>
-            <h4>Facilis Impedit</h4>
-            <p>Quis eum numquam veniam ea voluptatibus voluptas. Excepturi aut nostrum repudiandae voluptatibus corporis sequi</p>
-          </div>
+          {{/property}}
 
         </div>
-
+        <div style="height:30px"></div>
+        <button class="btn btn-primary btn-sm disabled" onclick="location.href='/lookup-property';" style="float: right;">더보기</button>
       </div>
-    </section><!-- End About Lists Section -->
+    </section><!-- End Property Lists Section -->
 
-    <!-- ======= Frequently Asked Questions Section ======= -->
-    <section class="latest-blog section-bg">
+    <!-- ======= Classified by apartment section ======= -->
+    <section class="cba section-bg">
       <div class="container">
 
           <div class="section-title hangul" >
@@ -92,13 +75,13 @@
 
         <div class="row">
           <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
-            <div class="blog_post">
+            <div class="apart_part">
               <div class="thumbnail">
                 <h2 class="apart-name"><div class="hangul"> 동천파크자이 </div></h2>
                 <div class="featured-img">
-                  <a href=""><span class="gradient-overlay"></span></a>
+                  <a href="/lookup-property/park-xi"><span class="gradient-overlay"></span></a>
 
-                  <img src="img/slide/동천파크자이.jpg" alt="blog post" class="img1">
+                  <img src="img/slide/동천파크자이.jpg">
 
                 </div>
 
@@ -109,12 +92,12 @@
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
-            <div class="blog_post">
+            <div class="apart_part">
               <div class="thumbnail">
-                <h2 class="apart-name hangul"> <div class="hangul"> etc</div> </h2>
+                <h2 class="apart-name hangul"> <div class="hangul"> Etc</div> </h2>
                 <div class="featured-img">
-                  <a href="#" ><span class="gradient-overlay"></span></a>
-                  <img src="img/동아.jpg"  alt="blog post 2">
+                  <a href="/lookup-property/eastpole" ><span class="gradient-overlay"></span></a>
+                  <img src="img/동아.jpg">
                 </div>
 
               </div>
@@ -125,7 +108,7 @@
 
         </div>
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section><!-- End Classified by apartment section -->
 
 
   </main><!-- End #main -->

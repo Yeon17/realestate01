@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class RequestApiController {
     private final RequestService requestService;
 
-    @PostMapping("/api/v1/request")
+    @PostMapping("/api/v0/request")
     public Long save(@RequestBody RequestSaveRequestDto requestDto){
         return requestService.save(requestDto);
     }
 
-    @GetMapping("/api/v1/request/{id}")
+    @GetMapping("/api/v0/request/{id}")
     public RequestResponseDto findById (@PathVariable Long id){
         return requestService.findById(id);
     }
 
-    @DeleteMapping("/api/v1/request/{id}")
+    @DeleteMapping("/api/v0/request/{id}")
     public Long delete(@PathVariable Long id){
         requestService.delete(id);
         return id;

@@ -49,7 +49,8 @@ var main = {
                 title: $('#title').val(),
                 content: $('#summernote').val(),
                 image: src,
-                represent_img: represent_src
+                represent_img: represent_src,
+                uid: $('#uid').val()
             };
 
             $.ajax({
@@ -138,3 +139,127 @@ var main = {
 };
 
 main.init();
+
+//매물 업로드
+function check_represent(){
+    var span = $("<span>");
+    span.attr('class','represent_img');
+    span.attr('id','rps_img');
+    span.html('대표 이미지');
+    if($('#property_img').children().first().attr('id') != 'grid_img' && !$('#rps_img').length){
+        $('#property_img').children().children().first().append(span);
+    }
+};
+
+function upd_link(){
+    $('#p_img').trigger('click');
+}
+
+$('#p_img').on('change', function() {
+    var files = document.getElementById('p_img').files;
+    for (var i = 0; i < files.length; i++) {
+        image_upload(files[i]);
+    }
+    $('#p_img').val(null);
+});
+
+function image_upload(file) {
+    data = new FormData();
+    data.append("file", file);
+    	$.ajax({
+    	    data : data,
+    	    type : "POST",
+    		url : "/image_upload",
+    		contentType : false,
+    		processData : false,
+    		success : function(data) {
+    		    var div_img = $('#grid_img').clone(true);
+    		    div_img.removeAttr('id'); //다음에 복제시 문제가 되므로 class 속성 삭제
+    		    div_img.removeAttr('onclick');
+
+    		    var img = div_img.find('.img_src');
+    		    img.next().css('display','');
+
+    		    img.attr('src',data.url);
+    		    $('#grid_img').before(div_img);
+    		    check_represent();
+
+    		},
+    		error:function(request,status,error){
+                        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+    	});
+    }
+
+function delete_img(del_btn){
+    var img = $(del_btn).prev();
+    var src = img.attr('src');
+
+    data = new FormData();
+    data.append("src", src);
+    $.ajax({
+        data : data,
+        type : 'DELETE',
+        url : '/delete_img',
+        contentType : false,
+        processData : false,
+        error:function(request,status,error){
+            alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+        }
+    });
+
+    var div_img = $(del_btn).parent().parent();
+    $(div_img).remove();
+
+    check_represent();
+}
+
+// 매물 이미지 중 첫번째 active
+$(".carousel-inner").children().first().attr('class','carousel-item active');
+
+//매물 수정시 기존 데이터 표시
+if (location.pathname.includes('/administer/property-update/')) {
+    var trade = $('input[name="trade"]');
+    var trade_prev = $('#prev').data("trade_prev");
+    if(trade_prev == '매매') $(trade[0]).attr('checked','checked');
+    else if(trade_prev == '전세') $(trade[1]).attr('checked','checked');
+    else if(trade_prev == '월세') $(trade[2]).attr('checked','checked');
+
+    var apart_prev = $('#addressKindU').data("apart_prev");
+    $("#addressKindU").val(apart_prev);
+
+    var height_prev = $('#floor_height').data("height_prev");
+    $("#floor_height").val(height_prev);
+}
+
+//매물 조회 아파트 표시
+var b2 = document.getElementsByClassName("apt-main");
+
+if (location.pathname == '/lookup-property') {
+  b2[0].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/park-xi') {
+  b2[1].classList.add('clicked');
+}
+
+var b3 = document.getElementsByClassName("apt-etc");
+if (location.pathname == '/lookup-property/eastpole') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[0].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/samsung4') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[1].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/eastpark') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[2].classList.add('clicked');
+}
+if (location.pathname == '/lookup-property/puleujio') {
+  $('#etc_detail').css('display','');
+  b2[2].classList.add('clicked');
+  b3[3].classList.add('clicked');
+}

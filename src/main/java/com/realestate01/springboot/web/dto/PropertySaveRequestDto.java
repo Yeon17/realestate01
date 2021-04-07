@@ -61,12 +61,14 @@ public class PropertySaveRequestDto {
 
     private String represent_img;
 
+    private Long uid;
+
     @Builder
     public PropertySaveRequestDto(String apart, String address, String trade, String price, String admin_expense, String include,
                                   String floor_current, String floor_total, String floor_height, String room, String bathroom,
                                   String actual_area, String actual_area_py, String supply_area, String supply_area_py, String park,
                                   String park_all, String direction, String elevator, String enter_date, String heat,
-                                  String household, String title, String content, String image, String represent_img){
+                                  String household, String title, String content, String image, String represent_img, Long uid){
 
         this.apart = apart;
         this.address = address;
@@ -94,6 +96,7 @@ public class PropertySaveRequestDto {
         this.content = content;
         this.image = image;
         this.represent_img = represent_img;
+        this.uid = uid;
     }
 
     public Property toEntity(){
@@ -125,6 +128,7 @@ public class PropertySaveRequestDto {
                 .content(content)
                 .image(image)
                 .represent_img(represent_img)
+                .uid(uid)
                 .build();
 
     }

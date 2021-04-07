@@ -57,6 +57,8 @@ public class PropertyResponseDto {
 
     private String image;
 
+    private Long uid;
+
     public PropertyResponseDto(Property entity){
         this.id = entity.getId();
         this.apart = entity.getApart();
@@ -84,5 +86,6 @@ public class PropertyResponseDto {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.image = entity.getImage();
+        this.uid = entity.getUid();
     }
 }

@@ -8,7 +8,7 @@
 
         <div class="d-flex justify-content-between align-items-center">
           <ol>
-            <li><a href="index.html">홈</a></li>
+            <li><a href="/">홈</a></li>
             <li>공지사항</li>
           </ol>
         </div>
@@ -56,7 +56,9 @@
                 </ul>
 
                 <div class="text-right">
-                    <button onclick="location.href='/enroll-notice'" class="submit text-right">글쓰기</button>
+                    {{#admin}}
+                    <button onclick="location.href='/administer/enroll-notice'" class="submit text-right">글쓰기</button>
+                    {{/admin}}
                 </div>
             </div>
 

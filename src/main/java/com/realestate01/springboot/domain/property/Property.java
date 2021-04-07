@@ -1,6 +1,8 @@
 package com.realestate01.springboot.domain.property;
 
 import com.realestate01.springboot.domain.BaseTimeEntity;
+import com.realestate01.springboot.domain.cart.Cart;
+import com.realestate01.springboot.domain.cart.CartProduct;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -74,12 +76,14 @@ public class Property extends BaseTimeEntity {
 
     private String represent_img;
 
+    private Long uid;
+
     @Builder
     public Property(String apart, String address, String trade, String price, String admin_expense, String include,
                     String floor_current, String floor_total, String floor_height, String room, String bathroom,
                     String actual_area, String actual_area_py, String supply_area, String supply_area_py, String park,
                     String park_all, String direction, String elevator, String enter_date, String heat,
-                    String household, String title, String content, String image, String represent_img){
+                    String household, String title, String content, String image, String represent_img, Long uid){
 
         this.apart = apart;
         this.address = address;
@@ -107,6 +111,7 @@ public class Property extends BaseTimeEntity {
         this.content = content;
         this.image = image;
         this.represent_img = represent_img;
+        this.uid = uid;
     }
 
     public void update(String apart, String address, String trade, String price, String admin_expense, String include,

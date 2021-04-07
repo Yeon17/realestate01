@@ -1,3 +1,124 @@
+var main = {
+    init : function () {
+        var _this = this;
+        $('#btn-request-save').on('click', function () {
+            if(_this.request_check()) _this.request_save();
+        });
+
+        $('button[name=btn-request-delete]').on('click', function () {
+            var rid = $(this).data('rid');
+            if(_this.delete_check()) _this.request_delete(rid);
+        });
+    },
+    request_save : function () {
+        var data = {
+            trade: $('#trade').val(),
+            addressKindU: $('#addressKindU').val(),
+            addressKindD: $('#addressKindD').val(),
+            transaction: $('#transaction').val(),
+            price: $('#price').val(),
+            date: $('#date').val(),
+            visit: $('#visit').val(),
+            name: $('#name').val(),
+            phone: $('#phone').val(),
+            message: $('#summernote').val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v0/request',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('의뢰가 등록되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+    request_check : function () {
+        var f = document.request;
+
+        if (f.addressKindU.value == "전체") {
+            alert("아파트를 선택해주세요");
+            f.addressKindU.focus();
+            return false;
+        }
+
+        if (f.addressKindD.value == "전체") {
+            alert("타입을 선택해주세요");
+            f.addressKindD.focus();
+            return false;
+        }
+
+        if (f.transaction.value == "전체") {
+            alert("거래종류를 선택해주세요");
+            f.transaction.focus();
+            return false;
+        }
+
+        if (f.price.value == "") {
+            alert("가격범위를 입력해주세요");
+            f.price.focus();
+            return false;
+        }
+
+        if (f.date.value == "") {
+            alert("구매예정 날짜를 입력해주세요");
+            f.date.focus();
+            return false;
+        }
+
+        if (f.visit.value == "") {
+            alert("방문 날짜를 입력해주세요");
+            f.visit.focus();
+            return false;
+        }
+
+        if (f.name.value == "") {
+            alert("이름을 입력해주세요");
+            f.name.focus();
+            return false;
+        }
+
+        if (f.phone.value == "") {
+            alert("휴대폰 번호를 입력해주세요");
+            f.phone.focus();
+            return false;
+        }
+
+        if($(":radio[name='consent']:checked").val() != "agree"){
+            alert('개인정보 수집에 동의해주세요');
+            f.consent.focus();
+            return false;
+        }
+        return true;
+    },
+    delete_check : function() {
+        if (confirm("정말 삭제하시겠습니까?") == true) return true;
+        else return false;
+    },
+    request_delete : function (id) {
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v0/request/'+id,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8'
+        }).done(function() {
+            alert('글이 삭제되었습니다.');
+            location.reload();
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    }
+
+};
+
+main.init();
+
+    //아파트 별 면적 표시
     function addressKindChange(e) {
         var pakeujai = ["전체", "61㎡ A형","61㎡ B형","61㎡ C형","61㎡ D형","61㎡ E형","61㎡ F형"];
         var eastpole = ["전체", "78㎡", "84A㎡","84B㎡","103㎡","108㎡"];
@@ -31,71 +152,15 @@ $(document).on("click", "#content_detail", function () {
 }); //administer 상세내용 창
 
 var b1 = document.getElementsByClassName("btn-re");
-if (location.pathname == '/administer') {
+if (location.pathname == '/administer/confirm-request') {
   b1[0].classList.add('clicked');
 }
-if (location.pathname == '/administer/buy') {
+if (location.pathname == '/administer/confirm-request/buy') {
   b1[1].classList.add('clicked');
 }
-if (location.pathname == '/administer/sell') {
+if (location.pathname == '/administer/confirm-request/sell') {
   b1[2].classList.add('clicked');
 }
-
-$(document).ready(function() {
-  $('#summernote').summernote({
-
-    height: 300,
-    minHeight: null,
-    maxHeight: null,
-    lang : 'ko-KR',
-    dialogsInBody: true,
-    toolbar: [
-    			    // [groupName, [list of button]]
-    			    ['fontname', ['fontname']],
-    			    ['fontsize', ['fontsize']],
-    			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-    			    ['color', ['forecolor','color']],
-    			    ['table', ['table']],
-    			    ['para', ['ul', 'ol', 'paragraph']],
-    			    ['height', ['height']],
-    			    ['insert',['picture','link','video']],
-    			    ['view', ['help']]
-    			  ],
-    			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-    			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-    callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-    					onImageUpload : function(files) {
-    						uploadSummernoteImageFile(files[0],this);
-    					},
-    					onPaste: function (e) {
-                                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                                    e.preventDefault();
-                                    document.execCommand('insertText', false, bufferText);
-                                }
-    			}
-
-  });
-
-});
-
-function uploadSummernoteImageFile(file, editor) {
-		data = new FormData();
-		data.append("file", file);
-		$.ajax({
-			data : data,
-			type : "POST",
-			url : "/uploadSummernoteImageFile",
-			contentType : false,
-			processData : false,
-			success : function(data) {
-            	//항상 업로드된 파일의 url이 있어야 한다.
-				$(editor).summernote('insertImage', data.url);
-			},
-			 error:function(request,status,error){
-                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-             }
-		});
-	}
 
 function check_new(){
     var dateList = document.getElementsByClassName("modi_date");
@@ -112,157 +177,3 @@ function check_new(){
 }
 
 check_new();
-
-function check_represent(){
-    var span = $("<span>");
-    span.attr('class','represent_img');
-    span.attr('id','rps_img');
-    span.html('대표 이미지');
-    if($('#property_img').children().first().attr('id') != 'grid_img' && !$('#rps_img').length){
-        $('#property_img').children().children().first().append(span);
-    }
-};
-
-function upd_link(){
-    $('#p_img').trigger('click');
-}
-
-$('#p_img').on('change', function() {
-    var files = document.getElementById('p_img').files;
-    for (var i = 0; i < files.length; i++) {
-        image_upload(files[i]);
-    }
-    $('#p_img').val(null);
-});
-
-function image_upload(file) {
-    data = new FormData();
-    data.append("file", file);
-    	$.ajax({
-    	    data : data,
-    	    type : "POST",
-    		url : "/image_upload",
-    		contentType : false,
-    		processData : false,
-    		success : function(data) {
-    		    var div_img = $('#grid_img').clone(true);
-    		    div_img.removeAttr('id'); //다음에 복제시 문제가 되므로 class 속성 삭제
-    		    div_img.removeAttr('onclick');
-
-    		    var img = div_img.find('.img_src');
-    		    img.next().css('display','');
-
-    		    img.attr('src',data.url);
-    		    $('#grid_img').before(div_img);
-    		    check_represent();
-
-    		},
-    		error:function(request,status,error){
-                        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-    	});
-    }
-
-function delete_img(del_btn){
-    var img = $(del_btn).prev();
-    var src = img.attr('src');
-
-    data = new FormData();
-    data.append("src", src);
-    $.ajax({
-        data : data,
-        type : 'DELETE',
-        url : '/delete_img',
-        contentType : false,
-        processData : false,
-        error:function(request,status,error){
-            alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-        }
-    });
-
-    var div_img = $(del_btn).parent().parent();
-    $(div_img).remove();
-
-    check_represent();
-}
-
-var scrap = 'off';
-function scrap_property(aa){
-    if(scrap == 'off'){
-        $(aa).css('color','blue');
-        scrap = 'on';
-    }
-    else {
-        $(aa).css('color','');
-        scrap = 'off';
-    }
-}
-
-var contents = $('.string_html').data('contents');
-$(".string_html").html(contents);
-
-$(".carousel-inner").children().first().attr('class','carousel-item active');
-
-
-var b2 = document.getElementsByClassName("apt-main");
-if (location.pathname == '/lookup-property') {
-  b2[0].classList.add('clicked');
-}
-if (location.pathname == '/lookup-property/park-xi') {
-  b2[1].classList.add('clicked');
-}
-
-var b3 = document.getElementsByClassName("apt-etc");
-if (location.pathname == '/lookup-property/eastpole') {
-  $('#etc_detail').css('display','');
-  b2[2].classList.add('clicked');
-  b3[0].classList.add('clicked');
-}
-if (location.pathname == '/lookup-property/samsung4') {
-  $('#etc_detail').css('display','');
-  b2[2].classList.add('clicked');
-  b3[1].classList.add('clicked');
-}
-if (location.pathname == '/lookup-property/eastpark') {
-  $('#etc_detail').css('display','');
-  b2[2].classList.add('clicked');
-  b3[2].classList.add('clicked');
-}
-if (location.pathname == '/lookup-property/puleujio') {
-  $('#etc_detail').css('display','');
-  b2[2].classList.add('clicked');
-  b3[3].classList.add('clicked');
-}
-
-if (location.pathname.includes('/property/update/')) {
-    var trade = $('input[name="trade"]');
-    var trade_prev = $('#prev').data("trade_prev");
-    if(trade_prev == '매매') $(trade[0]).attr('checked','checked');
-    else if(trade_prev == '전세') $(trade[1]).attr('checked','checked');
-    else if(trade_prev == '월세') $(trade[2]).attr('checked','checked');
-
-    var apart_prev = $('#addressKindU').data("apart_prev");
-    $("#addressKindU").val(apart_prev);
-
-    var height_prev = $('#floor_height').data("height_prev");
-    $("#floor_height").val(height_prev);
-}
-
-
-function modi_ans(){
-     $('#view_ans').css('display','none');
-     $('.answer').append(
-        "<div id='answer_text' style='border:1px solid #a9a9a9; background-color:white'>"+
-            "<textarea id='ans_content' style='width:100%; height:150px; border:none; padding:20px'></textarea>"+
-            "<div style='border-top:1px solid #e4e4e4; height:40px;text-align:right;'>"+
-                "<div id='btn-cancel' onclick='change_view()' style='padding:9px 25px 9px 25px;display:inline-block'>취소</div>"+
-                "<div id='btn-answer-update' onclick='click_update()' style='padding:9px 25px 9px 25px; display:inline-block'>등록</div>"+
-            "</div>"+
-        "</div>"
-     );
-     $('#ans_content').html($('#view_ans_text').html());
-}
-function change_view(){
-     $('#answer_text').remove();
-     $('#view_ans').css('display','');
-}

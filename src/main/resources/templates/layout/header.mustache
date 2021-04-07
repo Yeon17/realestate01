@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Mamba Bootstrap Template - Index</title>
+  <title>단지내 동천파크자이 공인중개사 사무소</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="/img/favicon.png" rel="icon">
-  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/img/favicon.png" rel="shortcut-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
@@ -49,14 +49,28 @@
   <div class="container clearfix">
     <div class="contact-info float-left">
       <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
-      <i class="icofont-phone"></i> +1 5589 55488 55
+      <i class="icofont-phone"></i>  031-272-6111
     </div>
-    <div class="social-links float-right">
-      <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-      <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-      <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-      <a href="#" class="skype"><i class="icofont-skype"></i></a>
-      <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
+    <div class="social-links float-right" style="font-size:12px; padding-top:2px;">
+        {{#uid}}
+        <li class=""><a href="/logout">로그아웃</a></li>
+        <input id='uid' type='text' value="{{uid}}" style="display:none;">
+        {{/uid}}
+        {{^uid}}
+        <li class=""><a href="/loginPage">로그인</a></li>
+        {{/uid}}
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                마이페이지
+            </a>
+            <ul class="dropdown-menu" >
+                {{#uid}}
+                <li><a href="/account-management">계정관리</a></li>
+                {{/uid}}
+                <li><a href="/cart">찜매물</a></li>
+            </ul>
+        </li>
     </div>
   </div>
 </section>
@@ -66,26 +80,19 @@
   <div class="container">
 
     <div class="logo float-left">
-      <h1 class="text-light"><a href="/"><img src="/img/we1.jpg " width="230" style="margin-top:-5px;"></a></h1> <!--text-light는 글자색, bootstrap.css/ -->
+      <h1 class="text-light"><a href="/"><img src="/img/logo.jpg " width="230" style="margin-top:-5px;"></a></h1> <!--text-light는 글자색, bootstrap.css/ -->
     </div>
 
     <nav class="nav-menu float-right d-none d-lg-block">
       <ul>
-        <li class="drop-down"><a href="/administer?page=1">관리자 메뉴</a>
-            <ul>
-                <li><a href="/administer?page=1">의뢰조회</a></li>
-                <li><a href="/enroll-property">매물등록</a></li>
-                <li><a href="#"></a></li>
-            </ul>
-        </li>
-        <li><a href="find-way.html">찾아오시는 길</a></li>
-        <li class="drop-down"><a href="apart-view.html">아파트 정보</a>
+        <li><a href="/find-way">찾아오시는 길</a></li>
+        <li class="drop-down"><a href="/apart-view">아파트 정보</a>
           <ul>
-            <li><a href="apart-view.html">단지전경</a></li>
-            <li><a href="#">평형정보</a></li>
-            <li><a href="#">내부시설</a></li>
-            <li><a href="#">커뮤니티시설</a></li>
-            <li><a href="#">주변입지</a></li>
+            <li><a href="/apart-view">단지전경</a></li>
+            <li><a href="/area-info">평형정보</a></li>
+            <li><a href="/in-facility">내부시설</a></li>
+            <li><a href="/community-facility">커뮤니티시설</a></li>
+            <li><a href="/surrounding-location">주변입지</a></li>
           </ul>
         </li>
         <li class="drop-down"><a href="/request/buy">의뢰하기</a>
