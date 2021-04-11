@@ -49,11 +49,16 @@ public class CartService {
     public Long delete(CartSaveOrDeleteDto requestDto){
         User user = userRepository.findById(requestDto.getUid())
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다."));
-        CartProduct product = cartProductRepository.findByPid(requestDto.getPid());
+        CartProduct product = cartProductRepository.findByPid(requestDto.getUid(), requestDto.getPid());
         user.deleteCartProduct(product);
-        cartProductRepository.delete(product);
+        cartProductRepository.delete(product); //삭제 하면 이 매물이 2명 이상의 유저 카트에 담겨있다면 어쩔?
 
         return user.getCart().getId();
+    }
+
+    @Transactional
+    public void deleteByPid(Long id){
+        cartProductRepository.deleteByPid(id);
     }
 
     @Transactional(readOnly = true)

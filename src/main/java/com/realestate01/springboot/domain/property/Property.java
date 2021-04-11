@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -77,6 +79,9 @@ public class Property extends BaseTimeEntity {
     private String represent_img;
 
     private Long uid;
+
+    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
+    private List<CartProduct> cartProducts = new ArrayList<CartProduct>();
 
     @Builder
     public Property(String apart, String address, String trade, String price, String admin_expense, String include,

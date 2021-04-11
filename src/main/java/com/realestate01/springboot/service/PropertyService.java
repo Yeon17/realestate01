@@ -1,5 +1,6 @@
 package com.realestate01.springboot.service;
 
+import com.realestate01.springboot.domain.cart.CartProductRepository;
 import com.realestate01.springboot.domain.property.Property;
 import com.realestate01.springboot.domain.property.PropertyRepository;
 import com.realestate01.springboot.web.dto.PropertyListResponseDto;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PropertyService {
     private final PropertyRepository propertyRepository;
+    private final CartProductRepository cartProductRepository;
 
     public Long save(PropertySaveRequestDto requestDto){
         return propertyRepository.save(requestDto.toEntity()).getId();
@@ -60,6 +62,7 @@ public class PropertyService {
     public void delete (Long id) {
         Property property = propertyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 매물이 없습니다. id=" + id));
+
 
         propertyRepository.delete(property);
     }
