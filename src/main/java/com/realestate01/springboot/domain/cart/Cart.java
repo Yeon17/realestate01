@@ -1,6 +1,5 @@
 package com.realestate01.springboot.domain.cart;
 
-import com.realestate01.springboot.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 public interface CartProductRepository extends JpaRepository<CartProduct, Long> {
 
     @Query("SELECT cp FROM CartProduct cp JOIN User u ON u.cart.id = cp.cart.id WHERE cp.property.id = (:pid) AND u.id = (:uid)")

@@ -1,7 +1,6 @@
 package com.realestate01.springboot.domain.property;
 
 import com.realestate01.springboot.domain.BaseTimeEntity;
-import com.realestate01.springboot.domain.cart.Cart;
 import com.realestate01.springboot.domain.cart.CartProduct;
 import lombok.Builder;
 import lombok.Getter;
