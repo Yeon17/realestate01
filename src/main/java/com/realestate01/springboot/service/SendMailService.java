@@ -16,7 +16,7 @@ public class SendMailService {
     private final UserRepository userRepository;
 
     private final JavaMailSender mailSender;
-    private static final String FROM_ADDRESS = "leirion17@gmail.com";
+    private static final String FROM_ADDRESS = "abies0937@gmail.com";
 
     @Transactional
     public MailDto createMailAndSendPassword(String userEmail, String userName){

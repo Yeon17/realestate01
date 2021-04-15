@@ -48,7 +48,7 @@ public class IndexController {
         if(user != null){
             model.addAttribute("uid", user.getId());
         }
-        return "buy";
+        return "request-buy";
     }
 
     @GetMapping("/request/sell")
@@ -56,10 +56,10 @@ public class IndexController {
         if(user != null){
             model.addAttribute("uid", user.getId());
         }
-        return "sell";
+        return "request-sell";
     }
 
-    @GetMapping("/administer/confirm-request")
+    @GetMapping("/administer/request")
     public String confirm_request(Model model, @PageableDefault(size = 5) Pageable pageable, @LoginUser SessionUser user){
         Page<RequestListResponseDto> request = requestService.findByDesc(pageable,"all");
         CustomPagination pagination = new CustomPagination(request);
@@ -75,10 +75,10 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "confirm-request";
+        return "request";
     }
 
-    @GetMapping("/administer/confirm-request/buy")
+    @GetMapping("/administer/request/buy")
     public String confirm_buy(Model model, @PageableDefault(size = 5) Pageable pageable, @LoginUser SessionUser user){
         Page<RequestListResponseDto> request = requestService.findByDesc(pageable, "매수");
 
@@ -95,10 +95,10 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "confirm-request";
+        return "request";
     }
 
-    @GetMapping("/administer/confirm-request/sell")
+    @GetMapping("/administer/request/sell")
     public String confirm_sell(Model model, @PageableDefault(size = 5) Pageable pageable, @LoginUser SessionUser user){
         Page<RequestListResponseDto> request = requestService.findByDesc(pageable,"매도");
         CustomPagination pagination = new CustomPagination(request);
@@ -114,7 +114,7 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "confirm-request";
+        return "request";
     }
 
     @GetMapping("/administer/enroll-property")
@@ -123,11 +123,11 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "enroll-property";
+        return "property-enroll";
     }
 
 
-    @GetMapping("/lookup-property")
+    @GetMapping("/property")
     public String lookup_property(Model model, @PageableDefault(size = 8) Pageable pageable, @LoginUser SessionUser user){
 
         Page<PropertyListResponseDto> property = propertyService.findByDesc(pageable, "all");
@@ -144,10 +144,10 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "lookup-property";
+        return "property";
     }
 
-    @GetMapping("/lookup-property/park-xi")
+    @GetMapping("/property/park-xi")
     public String lookup_property_park_xi(Model model, @PageableDefault(size = 8) Pageable pageable, @LoginUser SessionUser user){
 
         Page<PropertyListResponseDto> property = propertyService.findByDesc(pageable, "동천파크자이");
@@ -164,10 +164,10 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "lookup-property";
+        return "property";
     }
 
-    @GetMapping("/lookup-property/eastpole")
+    @GetMapping("/property/eastpole")
     public String lookup_property_eastpole(Model model, @PageableDefault(size = 8) Pageable pageable, @LoginUser SessionUser user){
 
         Page<PropertyListResponseDto> property = propertyService.findByDesc(pageable, "더샵 동천 이스트포레");
@@ -183,10 +183,10 @@ public class IndexController {
         if(user != null){
             model.addAttribute("uid", user.getId());
         }
-        return "lookup-property";
+        return "property";
     }
 
-    @GetMapping("/lookup-property/samsung4")
+    @GetMapping("/property/samsung4")
     public String lookup_property_samsung4(Model model, @PageableDefault(size = 8) Pageable pageable, @LoginUser SessionUser user){
 
         Page<PropertyListResponseDto> property = propertyService.findByDesc(pageable, "수지 삼성4차");
@@ -204,10 +204,10 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "lookup-property";
+        return "property";
     }
 
-    @GetMapping("/lookup-property/eastpark")
+    @GetMapping("/property/eastpark")
     public String lookup_property_eastpark(Model model, @PageableDefault(size = 8) Pageable pageable, @LoginUser SessionUser user){
 
         Page<PropertyListResponseDto> property = propertyService.findByDesc(pageable, "수지 래미안이스트파크");
@@ -224,10 +224,10 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "lookup-property";
+        return "property";
     }
 
-    @GetMapping("/lookup-property/puleujio")
+    @GetMapping("/property/puleujio")
     public String lookup_property_puleujio(Model model, @PageableDefault(size = 8) Pageable pageable, @LoginUser SessionUser user){
 
         Page<PropertyListResponseDto> property = propertyService.findByDesc(pageable, "수지 파크푸르지오");
@@ -245,7 +245,7 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "lookup-property";
+        return "property";
     }
 
 
@@ -284,7 +284,7 @@ public class IndexController {
         return "property-detail";
     }
 
-    @GetMapping("/administer/property-update/{id}")
+    @GetMapping("/administer/update-property/{id}")
     public String propertyUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
         PropertyResponseDto dto = propertyService.findById(id);
         String image = dto.getImage();
@@ -301,7 +301,7 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "update-property";
+        return "property-update";
     }
 
     @GetMapping("/notice")
@@ -335,7 +335,7 @@ public class IndexController {
             model.addAttribute("username", user.getName());
         }
 
-        return "enroll-notice";
+        return "notice-enroll";
     }
 
     @GetMapping("/notice-detail/{id}")
@@ -358,7 +358,7 @@ public class IndexController {
         return "notice-detail";
     }
 
-    @GetMapping("/administer/notice-update/{id}")
+    @GetMapping("/administer/update-notice/{id}")
     public String update_notice(@PathVariable Long id, Model model, @LoginUser SessionUser user){
         NoticeResponseDto dto = noticeService.findById(id);
 
@@ -368,7 +368,7 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "update-notice";
+        return "notice-update";
     }
 
     @GetMapping("/question")
@@ -397,10 +397,10 @@ public class IndexController {
             model.addAttribute("username",user.getName());
         }
 
-        return "enroll-question";
+        return "question-enroll";
     }
 
-    @GetMapping("/question/update/{id}")
+    @GetMapping("/update-question/{id}")
     public String update_question(@PathVariable Long id, Model model, @LoginUser SessionUser user){
         QuestionResponseDto dto = questionService.findById(id);
 
@@ -410,7 +410,7 @@ public class IndexController {
             model.addAttribute("uid", user.getId());
         }
 
-        return "update-question";
+        return "question-update";
     }
 
     @GetMapping("/question-detail/{id}")
@@ -462,14 +462,14 @@ public class IndexController {
         return "sign-up";
     }
 
-    @GetMapping("/account-management")
+    @GetMapping("/account")
     public String account_management(Model model, @LoginUser SessionUser user){
         if(user != null){
             model.addAttribute("uid", user.getId());
             model.addAttribute("user", user);
         }
 
-        return "account-management";
+        return "account";
     }
 
     @GetMapping("/find-password")

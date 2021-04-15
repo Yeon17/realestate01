@@ -218,7 +218,7 @@ function delete_img(del_btn){
 $(".carousel-inner").children().first().attr('class','carousel-item active');
 
 //매물 수정시 기존 데이터 표시
-if (location.pathname.includes('/administer/property-update/')) {
+if (location.pathname.includes('/administer/update-property/')) {
     var trade = $('input[name="trade"]');
     var trade_prev = $('#prev').data("trade_prev");
     if(trade_prev == '매매') $(trade[0]).attr('checked','checked');
@@ -235,30 +235,30 @@ if (location.pathname.includes('/administer/property-update/')) {
 //매물 조회 아파트 표시
 var b2 = document.getElementsByClassName("apt-main");
 
-if (location.pathname == '/lookup-property') {
+if (location.pathname == '/property') {
   b2[0].classList.add('clicked');
 }
-if (location.pathname == '/lookup-property/park-xi') {
+if (location.pathname == '/property/park-xi') {
   b2[1].classList.add('clicked');
 }
 
 var b3 = document.getElementsByClassName("apt-etc");
-if (location.pathname == '/lookup-property/eastpole') {
+if (location.pathname == '/property/eastpole') {
   $('#etc_detail').css('display','');
   b2[2].classList.add('clicked');
   b3[0].classList.add('clicked');
 }
-if (location.pathname == '/lookup-property/samsung4') {
+if (location.pathname == '/property/samsung4') {
   $('#etc_detail').css('display','');
   b2[2].classList.add('clicked');
   b3[1].classList.add('clicked');
 }
-if (location.pathname == '/lookup-property/eastpark') {
+if (location.pathname == '/property/eastpark') {
   $('#etc_detail').css('display','');
   b2[2].classList.add('clicked');
   b3[2].classList.add('clicked');
 }
-if (location.pathname == '/lookup-property/puleujio') {
+if (location.pathname == '/property/puleujio') {
   $('#etc_detail').css('display','');
   b2[2].classList.add('clicked');
   b3[3].classList.add('clicked');

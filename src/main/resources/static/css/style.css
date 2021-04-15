@@ -892,16 +892,16 @@ section {
 # Confirm Request
 --------------------------------------------------------------*/
 
-.confirm-request .request-table{
+.request .request-table{
     font-size: 14px;
     text-align: center;
 }
 
-.confirm-request .request-table th{
+.request .request-table th{
     color: #626262;
 }
 
-.confirm-request .request-table tr:nth-child(2n) {
+.request .request-table tr:nth-child(2n) {
     background-color: #f5f9fc;
 }
 

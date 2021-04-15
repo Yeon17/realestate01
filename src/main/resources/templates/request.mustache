@@ -16,7 +16,7 @@
       </div>
     </section><!-- End Breadcrumbs Section -->
 
-    <section id="confirm-request" class="confirm-request">
+    <section id="request" class="request">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="section-title">
@@ -26,9 +26,9 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <ul class="menu-filters">
-                      <li onclick="location.href='/administer/confirm-request'" class="btn-re">전체</li>
-                      <li onclick="location.href='/administer/confirm-request/buy'" class="btn-re">매수</li>
-                      <li onclick="location.href='/administer/confirm-request/sell'" class="btn-re">매도</li>
+                      <li onclick="location.href='/administer/request'" class="btn-re">전체</li>
+                      <li onclick="location.href='/administer/request/buy'" class="btn-re">매수</li>
+                      <li onclick="location.href='/administer/request/sell'" class="btn-re">매도</li>
                     </ul>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
                       <td>{{visit}}</td>
                       <td>{{name}}</td>
                       <td>{{phone}}</td>
-                      <td><button id="content_detail" class="btn btn-outline-dark btn-sm" a href="#modal_view" data-content='{{message}}' data-toggle="modal">내용보기</button></td>
+                      <td><button id="content_detail" class="btn btn-outline-dark btn-sm" a href="#modal_view" data-content='{{#message}}{{message}}{{/message}}' data-toggle="modal">내용보기</button></td>
                       <td class="modi_date">{{modifiedDate}}</td>
                       <td><button name="btn-request-delete" data-rid={{id}} class="btn btn-outline-dark btn-sm">삭제</button></td>
                     </tr>

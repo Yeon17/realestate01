@@ -25,5 +25,6 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/loginPage");
         dispatcher.forward(request, response);
+
     }
 }

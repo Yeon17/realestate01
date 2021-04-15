@@ -152,13 +152,13 @@ $(document).on("click", "#content_detail", function () {
 }); //administer 상세내용 창
 
 var b1 = document.getElementsByClassName("btn-re");
-if (location.pathname == '/administer/confirm-request') {
+if (location.pathname == '/administer/request') {
   b1[0].classList.add('clicked');
 }
-if (location.pathname == '/administer/confirm-request/buy') {
+if (location.pathname == '/administer/request/buy') {
   b1[1].classList.add('clicked');
 }
-if (location.pathname == '/administer/confirm-request/sell') {
+if (location.pathname == '/administer/request/sell') {
   b1[2].classList.add('clicked');
 }
 
