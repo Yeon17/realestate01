@@ -2,9 +2,12 @@
 
 .gradle
 .idea
+.properties
 
 application-oauth.properties
 application.properties
+application-real.properties
+
 
 build
 out

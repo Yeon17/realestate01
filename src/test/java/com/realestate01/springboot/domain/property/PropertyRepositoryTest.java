@@ -1,7 +1,5 @@
 package com.realestate01.springboot.domain.property;
 
-import com.realestate01.springboot.domain.request.Request;
-import com.realestate01.springboot.domain.request.RequestRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -75,8 +73,11 @@ public class PropertyRepositoryTest {
         String image = "QWERQWERE";
 
 
+
+
         propertyRepository.save(Property.builder()
                 .address(address)
+                .apart("adff")
                 .trade(trade)
                 .price(price)
                 .admin_expense(admin_expense)
@@ -100,6 +101,8 @@ public class PropertyRepositoryTest {
                 .title(title)
                 .content(content)
                 .image(image)
+                .represent_img("asfdasdf")
+                .uid(12L)
                 .build());
 
 
