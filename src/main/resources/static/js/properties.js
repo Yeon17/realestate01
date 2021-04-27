@@ -171,23 +171,21 @@ function image_upload(file) {
     	    type : "POST",
     		url : "/image_upload",
     		contentType : false,
-    		processData : false,
-    		success : function(data) {
-    		    var div_img = $('#grid_img').clone(true);
-    		    div_img.removeAttr('id'); //다음에 복제시 문제가 되므로 class 속성 삭제
-    		    div_img.removeAttr('onclick');
+    		processData : false
+    	}).done(function(data) {
+    	    var div_img = $('#grid_img').clone(true);
+    		div_img.removeAttr('id'); //다음에 복제시 문제가 되므로 class 속성 삭제
+    		div_img.removeAttr('onclick');
 
-    		    var img = div_img.find('.img_src');
-    		    img.next().css('display','');
+    		var img = div_img.find('.img_src');
+    		img.next().css('display','');
 
-    		    img.attr('src',data.url);
-    		    $('#grid_img').before(div_img);
-    		    check_represent();
+    		img.attr('src',data.url);
+    		$('#grid_img').before(div_img);
+    		check_represent();
 
-    		},
-    		error:function(request,status,error){
-                        alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
+    	}).fail(function (error) {
+            alert(JSON.stringify(error));
     	});
     }
 
@@ -202,16 +200,14 @@ function delete_img(del_btn){
         type : 'DELETE',
         url : '/delete_img',
         contentType : false,
-        processData : false,
-        error:function(request,status,error){
-            alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-        }
+        processData : false
+    }).done(function(data) {
+        var div_img = $(del_btn).parent().parent();
+        $(div_img).remove();
+        check_represent();
+    }).fail(function (error) {
+        alert(JSON.stringify(error));
     });
-
-    var div_img = $(del_btn).parent().parent();
-    $(div_img).remove();
-
-    check_represent();
 }
 
 // 매물 이미지 중 첫번째 active

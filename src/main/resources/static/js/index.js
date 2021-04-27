@@ -43,14 +43,12 @@ function uploadSummernoteImageFile(file, editor) {
 			type : "POST",
 			url : "/image_upload",
 			contentType : false,
-			processData : false,
-			success : function(data) {
-            	//항상 업로드된 파일의 url이 있어야 한다.
-				$(editor).summernote('insertImage', data.url);
-			},
-			 error:function(request,status,error){
-                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-             }
+			processData : false
+		}).done(function(data) {
+            //항상 업로드된 파일의 url이 있어야 한다.
+		    $(editor).summernote('insertImage', data.url);
+	    }).fail(function(error) {
+            alert(JSON.stringify(error));
 		});
 	}
 
