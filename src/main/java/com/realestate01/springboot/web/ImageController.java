@@ -54,13 +54,16 @@ public class ImageController {
 
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
         String savedFileName = UUID.randomUUID() + extension;
-        File targetFile = new File("c:\\upload\\property_image\\" + savedFileName);
+
+        String fileRoot = "/home/ec2-user/upload/";
+
+        File targetFile = new File(fileRoot + savedFileName);
 
         try {
             //file.transferTo(targetFile);
             InputStream fileStream = file.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile);
-            mav.addProperty("url", "/upload/property_image/"+savedFileName);
+            mav.addProperty("url", "/upload/"+savedFileName);
             mav.addProperty("responseCode", "success");
         } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
@@ -73,10 +76,10 @@ public class ImageController {
 
     @DeleteMapping("/delete_img")
     @ResponseBody
-    public void delete_img(@RequestParam("src") String src){
-        src.replace("/upload/property_image/","c:\\upload\\property_image\\");
-        File targetFile = new File(src);
-        FileUtils.deleteQuietly(targetFile);
+    public void delete_img(@RequestParam("src") String src) throws IOException {
+        String src2 = src.replace("/upload/","/home/ec2-user/upload/");
+        File targetFile = new File(src2);
+        java.nio.file.Files.delete(targetFile.toPath());
     }
 
 }

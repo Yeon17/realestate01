@@ -41,7 +41,7 @@ function uploadSummernoteImageFile(file, editor) {
 		$.ajax({
 			data : data,
 			type : "POST",
-			url : "/uploadSummernoteImageFile",
+			url : "/image_upload",
 			contentType : false,
 			processData : false,
 			success : function(data) {

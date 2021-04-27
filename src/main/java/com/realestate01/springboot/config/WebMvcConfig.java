@@ -21,9 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/summernoteImage/**") //리소스 업로드 요청 시
-                .addResourceLocations("file:///C:/summernote_image/");
-        registry.addResourceHandler("/upload/property_image/**") //리소스 업로드 요청 시
-                .addResourceLocations("file:///c:/upload/property_image/");
+        registry.addResourceHandler("/upload/**") //리소스 업로드 요청 시
+                .addResourceLocations("file:///home/ec2-user/upload/");
     }
 }
