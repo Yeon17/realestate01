@@ -30,7 +30,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size = 6) Pageable pageable){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
 
             boolean isAdmin = false;
             if(user.getRole().equals("ROLE_ADMIN")) isAdmin = true;
@@ -46,7 +46,7 @@ public class IndexController {
     @GetMapping("/request/buy")
     public String buy(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
         return "request-buy";
     }
@@ -54,7 +54,7 @@ public class IndexController {
     @GetMapping("/request/sell")
     public String sell(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
         return "request-sell";
     }
@@ -72,7 +72,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "request";
@@ -92,7 +92,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "request";
@@ -111,7 +111,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "request";
@@ -120,7 +120,7 @@ public class IndexController {
     @GetMapping("/administer/enroll-property")
     public String enroll_property(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property-enroll";
@@ -141,7 +141,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property";
@@ -161,7 +161,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property";
@@ -181,7 +181,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
         return "property";
     }
@@ -201,7 +201,7 @@ public class IndexController {
 
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property";
@@ -221,7 +221,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property";
@@ -242,7 +242,7 @@ public class IndexController {
 
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property";
@@ -271,7 +271,7 @@ public class IndexController {
         model.addAttribute("img_arr",arr);
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
             model.addAttribute("oauth", user.getOauth());
             boolean scrap = cartService.checkScrap(user.getId(),dto.getId());
             model.addAttribute("scrap",scrap);
@@ -298,7 +298,7 @@ public class IndexController {
         model.addAttribute("img_arr",arr);
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "property-update";
@@ -317,7 +317,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
 
             boolean isAdmin = false;
             if(user.getRole().equals("ROLE_ADMIN")) isAdmin = true;
@@ -331,7 +331,7 @@ public class IndexController {
     public String enroll_notice(Model model, @LoginUser SessionUser user){
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
             model.addAttribute("username", user.getName());
         }
 
@@ -345,7 +345,7 @@ public class IndexController {
         model.addAttribute("notice",dto);
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
 
             boolean isUser = false;
             boolean isUserOrAdmin = false;
@@ -365,7 +365,7 @@ public class IndexController {
         model.addAttribute("notice", dto);
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "notice-update";
@@ -384,7 +384,7 @@ public class IndexController {
         model.addAttribute("check_next", pagination.isCheck_next());
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "question";
@@ -393,7 +393,7 @@ public class IndexController {
     @GetMapping("/enroll-question")
     public String enroll_question(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
             model.addAttribute("username",user.getName());
         }
 
@@ -407,7 +407,7 @@ public class IndexController {
         model.addAttribute("question", dto);
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "question-update";
@@ -422,7 +422,7 @@ public class IndexController {
         model.addAttribute("answer", ans_dto);
 
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
 
             boolean isAdmin= false;
             if(user.getRole().equals("ROLE_ADMIN")) isAdmin = true;
@@ -449,7 +449,7 @@ public class IndexController {
     @GetMapping("/cart")
     public String cart(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
             List<CartProductListResponseDto> cartList = cartService.findUserCart(user.getId());
             model.addAttribute("cartList", cartList);
         }
@@ -465,7 +465,7 @@ public class IndexController {
     @GetMapping("/account")
     public String account_management(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
             model.addAttribute("user", user);
         }
 
@@ -480,7 +480,7 @@ public class IndexController {
     @GetMapping("/apart-view")
     public String apart_view(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "apart-view";
@@ -489,7 +489,7 @@ public class IndexController {
     @GetMapping("/area-info")
     public String area_info(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "area-info";
@@ -498,7 +498,7 @@ public class IndexController {
     @GetMapping("/in-facility")
     public String in_facility(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "in-facility";
@@ -507,7 +507,7 @@ public class IndexController {
     @GetMapping("/community-facility")
     public String community_facility(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "community-facility";
@@ -516,7 +516,7 @@ public class IndexController {
     @GetMapping("/surrounding-location")
     public String surrounding_location(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "surrounding-location";
@@ -525,7 +525,7 @@ public class IndexController {
     @GetMapping("/find-way")
     public String find_way(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
 
         return "find-way";
@@ -534,7 +534,7 @@ public class IndexController {
     @GetMapping("/administer/member-management")
     public String member_management(Model model, @LoginUser SessionUser user){
         if(user != null){
-            model.addAttribute("uid", user.getId());
+            model.addAttribute("user", user);
         }
         List<CustomUserListResponseDto> dto = userService.findAllDesc();
         model.addAttribute("userList", dto);
