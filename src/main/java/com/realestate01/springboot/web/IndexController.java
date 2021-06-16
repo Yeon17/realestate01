@@ -278,7 +278,7 @@ public class IndexController {
 
             boolean isUser = false; //매물 작성자(관리자)만이 수정, 삭제 가능
             if(dto.getUid().equals(user.getId())) isUser = true;
-            model.addAttribute("user", isUser);
+            model.addAttribute("IsUser", isUser);
         }
 
         return "property-detail";
@@ -351,7 +351,7 @@ public class IndexController {
             boolean isUserOrAdmin = false;
             if(dto.getUid().equals(user.getId())) isUser = true;
             if(dto.getUid().equals(user.getId()) || user.getRole().equals("ROLE_ADMIN")) isUserOrAdmin = true;
-            model.addAttribute("user", isUser);
+            model.addAttribute("IsUser", isUser);
             model.addAttribute("UserOrAdmin", isUserOrAdmin);
         }
 
@@ -434,7 +434,7 @@ public class IndexController {
             boolean isUserOrAdmin = false;
             if(dto.getUid().equals(user.getId())) isUser = true;
             if(dto.getUid().equals(user.getId()) || user.getRole().equals("ROLE_ADMIN")) isUserOrAdmin = true;
-            model.addAttribute("user", isUser);
+            model.addAttribute("IsUser", isUser);
             model.addAttribute("UserOrAdmin", isUserOrAdmin);
         }
 

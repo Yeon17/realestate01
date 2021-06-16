@@ -36,9 +36,9 @@
           </div>
           <input id='id' type="text" value="{{notice.id}}" style="display:none">
           <div class="text-center" style="margin-top:50px;">
-          {{#user}}
+          {{#IsUser}}
             <button onclick="location.href='/administer/update-notice/{{notice.id}}'" class="submit" style="margin-right:5px;background: #428bca;color: #fff;">수정</button>
-          {{/user}}
+          {{/IsUser}}
           {{#UserOrAdmin}}
             <button id="btn-notice-delete" class="submit" style="margin-right:5px">삭제</button>
           {{/UserOrAdmin}}
