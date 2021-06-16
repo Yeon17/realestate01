@@ -147,10 +147,10 @@
                         </div>
 
                         <div class="text-center">
-                            {{#IsUser}}
+                            {{#admin}}
                             <button class="btn-white" style="margin-top:20px" onclick="location.href='/administer/update-property/{{property.id}}'">수정</button>
                             <button id ='btn-property-delete' class="btn-white" style="margin-top:20px">삭제</button>
-                            {{/IsUser}}
+                            {{/admin}}
                              <button class="btn-white" style="margin-top:20px" onclick="location.href='/property'">목록</button>
                         </div>
                     </div>

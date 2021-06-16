@@ -276,9 +276,9 @@ public class IndexController {
             boolean scrap = cartService.checkScrap(user.getId(),dto.getId());
             model.addAttribute("scrap",scrap);
 
-            boolean isUser = false; //매물 작성자(관리자)만이 수정, 삭제 가능
-            if(dto.getUid().equals(user.getId())) isUser = true;
-            model.addAttribute("IsUser", isUser);
+            boolean isAdmin = false; //관리자가 수정, 삭제 가능
+            if(user.getRole().equals("ROLE_ADMIN")) isAdmin = true;
+            model.addAttribute("admin", isAdmin);
         }
 
         return "property-detail";
