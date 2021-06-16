@@ -21,7 +21,7 @@
         <div class="section-title">
           <h2>찜매물</h2>
         </div>
-        {{#uid}}
+        {{#user}}
         <table class="table table-hover hangul" rules="groups" style="text-align:center;font-size:13px">
           <thead bgcolor="#9ac3e1" >
           <tr style="height:30px">
@@ -50,10 +50,10 @@
           {{/cartList}}
           </tbody>
         </table>
-        {{/uid}}
-        {{^uid}}
+        {{/user}}
+        {{^user}}
             <p style="text-align:center">로그인을 해주세요</p>
-        {{/uid}}
+        {{/user}}
       </div>
     </section>
 
